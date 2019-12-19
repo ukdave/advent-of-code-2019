@@ -1,11 +1,18 @@
 # frozen_string_literal: true
 
 class Day3
-  def solve line1, line2
+  def min_distance line1, line2
     line1_coords = line_coords(line1)
     line2_coords = line_coords(line2)
     intersections = (line1_coords & line2_coords) - [[0, 0]]
     intersections.map {|coords| manhattan_distance_form_start(coords) }.min
+  end
+
+  def min_steps line1, line2
+    line1_coords = line_coords(line1)
+    line2_coords = line_coords(line2)
+    intersections = (line1_coords & line2_coords) - [[0, 0]]
+    intersections.map {|coords| line1_coords.find_index(coords) + line2_coords.find_index(coords) }.min
   end
 
   def manhattan_distance_form_start coords
